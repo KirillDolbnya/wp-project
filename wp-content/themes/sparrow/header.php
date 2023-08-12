@@ -33,6 +33,7 @@
         <div class="twelve columns">
 
             <div class="logo">
+                <p><?php bloginfo('name'); ?></p>
                 <a href="index.html"><img alt="" src="images/logo.png"></a>
             </div>
 
