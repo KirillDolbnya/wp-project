@@ -33,8 +33,10 @@
         <div class="twelve columns">
 
             <div class="logo">
-                <p><?php bloginfo('name'); ?></p>
-                <a href="index.html"><img alt="" src="images/logo.png"></a>
+                <a href="<?php bloginfo('url'); ?>">
+                    <p><?php bloginfo('name'); ?></p>
+                    <img alt="" src="images/logo.png">
+                </a>
             </div>
 
             <nav id="nav-wrap">
