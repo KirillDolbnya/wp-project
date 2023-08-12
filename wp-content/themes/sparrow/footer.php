@@ -4,14 +4,13 @@
 
         <div class="twelve columns">
 
-            <ul class="footer-nav">
-                <li><a href="index.html">Home.</a></li>
-                <li><a href="blog.html">Blog.</a></li>
-                <li><a href="portfolio-index.html">Portfolio.</a></li>
-                <li><a href="about.html">About.</a></li>
-                <li><a href="contact.html">Contact.</a></li>
-                <li><a href="styles.html">Features.</a></li>
-            </ul>
+            <?php
+                wp_nav_menu( array(
+                    'theme_location'  => 'footer',
+                    'container'       => null,
+                    'menu_class'      => 'footer-nav',
+                ));
+            ?>
 
             <ul class="footer-social">
                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
