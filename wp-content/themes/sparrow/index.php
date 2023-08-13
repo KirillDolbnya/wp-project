@@ -182,98 +182,58 @@
 
     <div class="blog-entries">
 
-        <!-- Entry -->
-        <article class="row entry">
+        <?php
 
-            <div class="entry-header">
+        // параметры по умолчанию
+        $posts = get_posts( array(
+            'numberposts' => 3,
+            'post_type'   => 'post',
+            'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+        ) );
 
-                <div class="permalink">
-                    <a href="single.html"><i class="fa fa-link"></i></a>
+
+
+        foreach( $posts as $post ){
+            setup_postdata( $post );
+        ?>
+
+            <!-- Entry -->
+            <article class="row entry">
+
+                <div class="entry-header">
+
+                    <div class="permalink">
+                        <a href="<?php the_permalink(); ?>"><i class="fa fa-link"></i></a>
+                    </div>
+
+                    <div class="ten columns entry-title pull-right">
+                        <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                    </div>
+
+                    <div class="two columns post-meta end">
+                        <p>
+                            <time datetime="2014-01-31" class="post-date" pubdate=""><?php the_time('j F Y'); ?></time>
+                            <span class="dauthor"><?php the_author(); ?></span>
+                        </p>
+                    </div>
+
                 </div>
 
-                <div class="ten columns entry-title pull-right">
-                    <h3><a href="single.html">Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin auctor.</a></h3>
-                </div>
-
-                <div class="two columns post-meta end">
+                <div class="ten columns offset-2 post-content">
                     <p>
-                        <time datetime="2014-01-31" class="post-date" pubdate="">Jan 31, 2014</time>
-                        <span class="dauthor">By Sakura Haruno</span>
+                        <?php the_excerpt(); ?>
+                        <a class="more-link" href="<?php the_permalink(); ?>">Read More<i class="fa fa-arrow-circle-o-right"></i></a>
                     </p>
                 </div>
 
-            </div>
+            </article> <!-- Entry End -->
 
-            <div class="ten columns offset-2 post-content">
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                    deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.
-                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.
-                    <a class="more-link" href="single.html">Read More<i class="fa fa-arrow-circle-o-right"></i></a></p>
-            </div>
+        <?php
+        }
 
-        </article> <!-- Entry End -->
+        wp_reset_postdata(); // сброс
 
-        <!-- Entry -->
-        <article class="row entry">
-
-            <div class="entry-header">
-
-                <div class="permalink">
-                    <a href="single.html"><i class="fa fa-link"></i></a>
-                </div>
-
-                <div class="ten columns entry-title pull-right">
-                    <h3><a href="single.html">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed.</a></h3>
-                </div>
-
-                <div class="two columns post-meta end">
-                    <p>
-                        <time datetime="2014-01-29" class="post-date" pubdate="">Jan 30, 2014</time>
-                        <span class="dauthor">By John Doe</span>
-                    </p>
-                </div>
-
-            </div>
-
-            <div class="ten columns offset-2 post-content">
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                    deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.
-                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.
-                    <a class="more-link" href="single.html">Read More<i class="fa fa-arrow-circle-o-right"></i></a></p>
-            </div>
-
-        </article> <!-- Entry End -->
-
-        <!-- Entry -->
-        <article class="row entry">
-
-            <div class="entry-header">
-
-                <div class="permalink">
-                    <a href="single.html"><i class="fa fa-link"></i></a>
-                </div>
-
-                <div class="ten columns entry-title pull-right">
-                    <h3><a href="blog-single.html">Quis autem vel esse eum iure reprehenderit qui in ea voluptate velit esse.</a></h3>
-                </div>
-
-                <div class="two columns post-meta end">
-                    <p>
-                        <time datetime="2014-01-28" class="post-date" pubdate="">Jan 28, 2014</time>
-                        <span class="dauthor">By Naruto Uzumaki</span>
-                    </p>
-                </div>
-
-            </div>
-
-            <div class="ten columns offset-2 post-content">
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                    deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.
-                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.
-                    <a class="more-link" href="single.html">Read More<i class="fa fa-arrow-circle-o-right"></i></a></p>
-            </div>
-
-        </article> <!-- Entry End -->
+        ?>
 
     </div> <!-- Entries End -->
 
