@@ -8,6 +8,34 @@ add_action( 'widgets_init', 'register_my_sidebar' );
 add_filter( 'document_title_separator', 'change_document_title_separator' );
 add_filter('the_content','filter_content');
 add_action( 'init', 'register_post_types' );
+// хук для регистрации
+add_action( 'init', 'create_taxonomy' );
+function create_taxonomy(){
+
+    // список параметров: wp-kama.ru/function/get_taxonomy_labels
+    register_taxonomy( 'skill', [ 'portfolio' ], [
+        'label'                 => '', // определяется параметром $labels->name
+        'labels'                => [
+            'name'              => 'Навыки',
+            'singular_name'     => 'Навык',
+            'search_items'      => 'Найти навык',
+            'all_items'         => 'Все навыки',
+            'view_item '        => 'Показать навыки',
+            'parent_item'       => 'Родительский навык',
+            'parent_item_colon' => 'Родительский навык:',
+            'edit_item'         => 'Изменить навык',
+            'update_item'       => 'Обновить навык',
+            'add_new_item'      => 'Создать новый навык',
+            'new_item_name'     => 'Новое имя навыка',
+            'menu_name'         => 'Навыки',
+        ],
+        'description'           => 'Навыки которые использовались при создании проекта', // описание таксономии
+        'public'                => true,
+         'publicly_queryable'    => true, // равен аргументу public
+        'hierarchical'          => false,
+        'rewrite'               => true,
+    ] );
+}
 
 function register_post_types(){
 
@@ -30,7 +58,7 @@ function register_post_types(){
         'description'            => 'Наши работы в портфолио',
         'public'                 => true,
          'publicly_queryable'  => true, // зависит от public
-         'exclude_from_search' => true, // зависит от public
+         'exclude_from_search' => false, // зависит от public
          'show_ui'             => true, // зависит от public
          'show_in_nav_menus'   => true, // зависит от public
         'show_in_menu'           => true, // показывать ли в меню админки
@@ -44,7 +72,7 @@ function register_post_types(){
         //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
         'hierarchical'        => false,
         'supports'            => [ 'title', 'editor','author','thumbnail','excerpt','post-formats' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-        'taxonomies'          => [],
+        'taxonomies'          => ['skill'],
         'has_archive'         => false,
         'rewrite'             => true,
         'query_var'           => true,
