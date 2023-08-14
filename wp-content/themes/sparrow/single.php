@@ -19,15 +19,22 @@
 
 <!-- Content
 ================================================== -->
+<?php
+//    if (have_posts()){
+//        while (have_posts()){
+//            the_post();
+//?>
 <div class="content-outer">
 
     <div id="page-content" class="row">
 
-        <div id="primary" class="eight columns">
+<!--        --><?php //if (have_posts()){ while (have_posts()){ the_post(); ?>
+            <div id="primary" class="eight columns">
 
-            <?php get_template_part('post-template/post', get_post_format()); ?>
+                <?php get_template_part('post-template/post', get_post_format()); ?>
 
-        </div> <!-- Primary End-->
+            </div> <!-- Primary End-->
+<!--        --><?php //} } ?>
 
         <div id="secondary" class="four columns end">
 
@@ -96,6 +103,7 @@
 
 </div> <!-- Content End-->
 
+
 <!-- Tweets Section
 ================================================== -->
 <section id="tweets">
@@ -132,5 +140,9 @@
     </div>
 
 </section> <!-- Tweets Section End-->
+<?php
+//    }
+//}
+//?>
 
 <?php get_footer(); ?>
