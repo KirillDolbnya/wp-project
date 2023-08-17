@@ -8,8 +8,33 @@ add_action( 'widgets_init', 'register_my_sidebar' );
 add_filter( 'document_title_separator', 'change_document_title_separator' );
 add_filter('the_content','filter_content');
 add_action( 'init', 'register_post_types' );
-// хук для регистрации
 add_action( 'init', 'create_taxonomy' );
+add_action('wp_ajax_send_mail', 'send_mail');
+add_action('wp_ajax_nopriv_send_mail', 'send_mail');
+
+
+function send_mail()
+{
+    $name = $_POST['contactName'];
+    $email = $_POST['contactEmail'];
+    $subject = $_POST['contactSubject'];
+    $message = $_POST['contactMessage'];
+
+// подразумевается что $to, $subject, $message уже определены...
+$to = get_option('admin_email');
+// удалим фильтры, которые могут изменять заголовок $headers
+ remove_all_filters( 'wp_mail_from' );
+ remove_all_filters( 'wp_mail_from_name' );
+
+    $headers = array(
+        'From: '. $email,
+        'content-type: '. $subject,
+    );
+
+    wp_mail( $to, $subject, $message, $headers );
+    wp_die();
+}
+
 function create_taxonomy(){
 
     // список параметров: wp-kama.ru/function/get_taxonomy_labels
@@ -164,7 +189,7 @@ function script_theme()
     wp_enqueue_script( 'modernizr', get_template_directory_uri() .'/assets/js/modernizr.js');
     wp_enqueue_script( 'jquery.flexslider', get_template_directory_uri() .'/assets/js/jquery.flexslider.js');
     wp_enqueue_script( 'doubletaptogo', get_template_directory_uri() .'/assets/js/doubletaptogo.js');
-    wp_enqueue_script( 'init', get_template_directory_uri() .'/assets/js/init.js');
+    wp_enqueue_script( 'main', get_template_directory_uri() .'/assets/js/main.js',['jquery'],null,true);
 }
 
 function register_jquery()
